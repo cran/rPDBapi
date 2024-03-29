@@ -12,6 +12,12 @@
 #' @return The search results, which can vary based on the return type and options specified.
 #' @importFrom httr POST
 #' @importFrom jsonlite toJSON
+#' @examples
+#' search_operator = InOperator(value=c("Mus musculus", "Homo sapiens"),
+#' attribute="rcsb_entity_source_organism.taxonomy_lineage.name")
+#' return_type = "NON_POLYMER_ENTITY"
+#' results = perform_search(search_operator, return_type)
+#' results
 #' @export
 perform_search <- function(search_operator, return_type = "ENTRY", request_options = NULL, return_with_scores = FALSE, return_raw_json_dict = FALSE, verbosity = TRUE) {
   # Assuming perform_search_with_graph is already defined in R

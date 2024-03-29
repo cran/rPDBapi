@@ -9,14 +9,13 @@
 #' @return A list containing the data fetched from the PDB, with the names of the list elements set to the corresponding IDs.
 #'   If an error is encountered in the data fetching process, the function returns `NULL`.
 #' @importFrom jsonlite fromJSON
-#' @export
 
 fetch_data <- function(json_query, data_type, ids) {
   if (length(json_query) == 0) {
     stop("JSON query has not been created.")
   }
 
-  response <- search_graphql(list(query = json_query))
+  response <- search_graphql(graphql_json_query = list(query = json_query))
 
   if ("errors" %in% names(response)) {
     message("ERROR encountered in fetch_data().")
@@ -25,10 +24,12 @@ fetch_data <- function(json_query, data_type, ids) {
   }
 
   if (length(response$data[[1]]) != length(ids)) {
-    message("WARNING: one or more IDs not found in the PDB.")
-  }
+    stop("No ID found in the PDB.")
+  }else{
 
   names(response$data[[1]]) <- ids
+
+  }
 
   return(response)
 }

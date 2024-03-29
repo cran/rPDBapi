@@ -10,8 +10,7 @@
 #' @importFrom httr GET http_status
 #' @importFrom jsonlite fromJSON
 #' @examples
-#' # Example usage:
-#' # info <- get_info(pdb_id = c"4hhb")
+#' get_info(pdb_id = "4HHB")
 #' @export
 get_info <- function(pdb_id, url_root = 'https://data.rcsb.org/rest/v1/core/entry/') {
   pdb_id <- gsub(":", "/", pdb_id)  # Replace old entry identifier

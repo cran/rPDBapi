@@ -33,3 +33,10 @@ The search results, which can vary based on the return type and options specifie
 This function facilitates searching the RCSB Protein Data Bank (PDB) using a specified search operator.
 It allows various configurations like return type, additional request options, and verbosity control.
 }
+\examples{
+search_operator = InOperator(value=c("Mus musculus", "Homo sapiens"),
+attribute="rcsb_entity_source_organism.taxonomy_lineage.name")
+return_type = "NON_POLYMER_ENTITY"
+results = perform_search(search_operator, return_type)
+results
+}

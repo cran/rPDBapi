@@ -10,12 +10,16 @@
 #' @return A named list where each element's name is a PDB ID and its value is the title of the corresponding paper.
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
+#' @examples
+#' \donttest{
+#' find_papers("CRISPR")
+#' }
 #' @export
 find_papers <- function(search_term, max_results = 10) {
   # Assuming Query and get_info functions are already defined in R
 
   all_papers <- list()
-  id_list <- query_search(search_term)[[1]]
+  id_list <- query_search(search_term)
 
   pdbIds = id_list[1:max_results]
 
