@@ -15,7 +15,19 @@ fetch_data <- function(json_query, data_type, ids) {
     stop("JSON query has not been created.")
   }
 
-  response <- search_graphql(graphql_json_query = list(query = json_query))
+  response <- tryCatch(
+    {
+      search_graphql(graphql_json_query = list(query = json_query))
+    },
+    error = function(e) {
+      warning("Failed to execute GraphQL query: ", e$message)
+      return(NULL)
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
 
   if ("errors" %in% names(response)) {
     message("ERROR encountered in fetch_data().")
@@ -24,11 +36,9 @@ fetch_data <- function(json_query, data_type, ids) {
   }
 
   if (length(response$data[[1]]) != length(ids)) {
-    stop("No ID found in the PDB.")
-  }else{
-
-  names(response$data[[1]]) <- ids
-
+    stop("The number of returned IDs does not match the input IDs.")
+  } else {
+    names(response$data[[1]]) <- ids
   }
 
   return(response)

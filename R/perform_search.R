@@ -19,38 +19,40 @@
 #' results = perform_search(search_operator, return_type)
 #' results
 #' @export
-perform_search <- function(search_operator, return_type = "ENTRY", request_options = NULL, return_with_scores = FALSE, return_raw_json_dict = FALSE, verbosity = TRUE) {
-  # Assuming perform_search_with_graph is already defined in R
-  results <- perform_search_with_graph(
-    query_object = search_operator,
-    return_type = return_type,
-    request_options = request_options,
-    return_with_scores = return_with_scores,
-    return_raw_json_dict = return_raw_json_dict,
-    verbosity = verbosity
-  )
 
-  # Process and return results based on specified return type and options
+perform_search <- function(search_operator, return_type = "ENTRY", request_options = NULL, return_with_scores = FALSE, return_raw_json_dict = FALSE, verbosity = TRUE) {
+  results <- tryCatch(
+    {
+      perform_search_with_graph(
+        query_object = search_operator,
+        return_type = return_type,
+        request_options = request_options,
+        return_with_scores = return_with_scores,
+        return_raw_json_dict = return_raw_json_dict,
+        verbosity = verbosity
+      )
+    },
+    error = function(e) {
+      warning("Failed to fetch data from the database: ", e$message)
+      return(NULL)
+    }
+  )
   return(results)
 }
 
-
 perform_search_with_graph <- function(query_object, return_type = "ENTRY", request_options = NULL, return_with_scores = FALSE, return_raw_json_dict = FALSE, verbosity = TRUE) {
-  # Check if query_object is a SearchOperator or QueryGroup
   if((is.null(query_object$operator) || query_object$operator %in% SEARCH_OPERATORS) &&  is.null(query_object$type)){
     cast_query_object = QueryNode(query_object)
   }else{
     cast_query_object = query_object
   }
 
-  # Prepare request options
   request_options_dict <- if (!is.null(request_options)) {
     request_options
   } else {
     list(return_all_hits = TRUE)
   }
 
-  # Construct the query dictionary
   rcsb_query_dict <- list(
     query = cast_query_object,
     request_options = request_options_dict,
@@ -61,19 +63,23 @@ perform_search_with_graph <- function(query_object, return_type = "ENTRY", reque
     message("Querying RCSB Search with the following parameters:\n", toJSON(rcsb_query_dict, auto_unbox = TRUE, pretty = TRUE))
   }
 
-  # Perform the HTTP POST request
-  response <- POST(
-    url = SEARCH_URL_ENDPOINT,
-    body = toJSON(rcsb_query_dict, auto_unbox = TRUE, pretty = TRUE),
-    encode = "json"
+  response <- tryCatch(
+    {
+      POST(
+        url = SEARCH_URL_ENDPOINT,
+        body = toJSON(rcsb_query_dict, auto_unbox = TRUE, pretty = TRUE),
+        encode = "json"
+      )
+    },
+    error = function(e) {
+      stop("HTTP request failed: ", e$message)
+    }
   )
 
-  # Check response status
   if (http_status(response)$category != "Success") {
-    stop("Request failed with:", content(response, "text", encoding = "UTF-8"))
+    stop("Request failed with: ", content(response, "text", encoding = "UTF-8"))
   }
 
-  # Process the response
   response_json <- fromJSON(content(response, "text", encoding = "UTF-8"))
   if (return_raw_json_dict) {
     return(response_json)
@@ -86,8 +92,5 @@ perform_search_with_graph <- function(query_object, return_type = "ENTRY", reque
       response_json$result_set$identifier
     }
 
-
   return(results)
 }
-
-
