@@ -44,5 +44,7 @@ This function downloads PDB files from the RCSB database, supporting different f
 It warns to consider compression for CIF files for faster download.
 }
 \examples{
-pdb_file <-  get_pdb_file(pdb_id = "4HHB", filetype = "cif")
+\donttest{
+  pdb_file <-  get_pdb_file(pdb_id = "4HHB", filetype = "cif")
+}
 }

@@ -24,7 +24,9 @@
 #' @importFrom xml2 read_xml as_list
 #' @importFrom bio3d read.pdb read.cif as.xyz trim.xyz atom2xyz atom.select.pdb
 #' @examples
-#' pdb_file <-  get_pdb_file(pdb_id = "4HHB", filetype = "cif")
+#' \donttest{
+#'   pdb_file <-  get_pdb_file(pdb_id = "4HHB", filetype = "cif")
+#' }
 #' @export
 
 get_pdb_file <- function(pdb_id, filetype = 'cif', rm.insert = FALSE, rm.alt = TRUE, compression = TRUE, save = FALSE, path = NULL) {

@@ -13,11 +13,13 @@
 #' @importFrom httr POST
 #' @importFrom jsonlite toJSON
 #' @examples
+#' \donttest{
 #' search_operator = InOperator(value=c("Mus musculus", "Homo sapiens"),
 #' attribute="rcsb_entity_source_organism.taxonomy_lineage.name")
 #' return_type = "NON_POLYMER_ENTITY"
 #' results = perform_search(search_operator, return_type)
 #' results
+#' }
 #' @export
 
 perform_search <- function(search_operator, return_type = "ENTRY", request_options = NULL, return_with_scores = FALSE, return_raw_json_dict = FALSE, verbosity = TRUE) {
@@ -41,10 +43,10 @@ perform_search <- function(search_operator, return_type = "ENTRY", request_optio
 }
 
 perform_search_with_graph <- function(query_object, return_type = "ENTRY", request_options = NULL, return_with_scores = FALSE, return_raw_json_dict = FALSE, verbosity = TRUE) {
-  if((is.null(query_object$operator) || query_object$operator %in% SEARCH_OPERATORS) &&  is.null(query_object$type)){
-    cast_query_object = QueryNode(query_object)
-  }else{
-    cast_query_object = query_object
+  if ((is.null(query_object$operator) || query_object$operator %in% SEARCH_OPERATORS) && is.null(query_object$type)) {
+    cast_query_object <- QueryNode(query_object)
+  } else {
+    cast_query_object <- query_object
   }
 
   request_options_dict <- if (!is.null(request_options)) {
@@ -68,7 +70,8 @@ perform_search_with_graph <- function(query_object, return_type = "ENTRY", reque
       POST(
         url = SEARCH_URL_ENDPOINT,
         body = toJSON(rcsb_query_dict, auto_unbox = TRUE, pretty = TRUE),
-        encode = "json"
+        encode = "json",
+        content_type("application/json")
       )
     },
     error = function(e) {
@@ -85,12 +88,11 @@ perform_search_with_graph <- function(query_object, return_type = "ENTRY", reque
     return(response_json)
   }
 
-  results <-
-    if (return_with_scores) {
-      response_json$result_set
-    } else {
-      response_json$result_set$identifier
-    }
+  results <- if (return_with_scores) {
+    response_json$result_set
+  } else {
+    response_json$result_set$identifier
+  }
 
   return(results)
 }

@@ -41,12 +41,17 @@ using their REST API. It allows for various types of searches based on the provi
 }
 \examples{
 # Get a list of PDBs for a specific search term
+\donttest{
 pdbs <- query_search("ribosome")
+head(pdbs)
 
 # Search by PubMed ID Number
-pdbs <- query_search(search_term = 27499440, query_type = "PubmedIdQuery")
+pdbs_by_pubmedid <- query_search(search_term = 27499440, query_type = "PubmedIdQuery")
+head(pdbs_by_pubmedid)
 
 # Search by source organism using NCBI TaxId
-pdbs <- query_search(search_term = "6239", query_type = "TreeEntityQuery")
+pdbs_by_ncbi_taxid <- query_search(search_term = "6239", query_type = "TreeEntityQuery")
+head(pdbs_by_ncbi_taxid)
+}
 
 }

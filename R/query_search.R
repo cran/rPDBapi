@@ -18,18 +18,23 @@
 #' @return Depending on the return_type, it either returns a list of PDB IDs (if "entry")
 #'         or the full response from the API.
 #'
-#' @importFrom httr POST content
+#' @importFrom httr POST content content_type
 #' @importFrom jsonlite toJSON fromJSON
 #'
 #' @examples
 #' # Get a list of PDBs for a specific search term
+#' \donttest{
 #' pdbs <- query_search("ribosome")
+#' head(pdbs)
 #'
 #' # Search by PubMed ID Number
-#' pdbs <- query_search(search_term = 27499440, query_type = "PubmedIdQuery")
+#' pdbs_by_pubmedid <- query_search(search_term = 27499440, query_type = "PubmedIdQuery")
+#' head(pdbs_by_pubmedid)
 #'
 #' # Search by source organism using NCBI TaxId
-#' pdbs <- query_search(search_term = "6239", query_type = "TreeEntityQuery")
+#' pdbs_by_ncbi_taxid <- query_search(search_term = "6239", query_type = "TreeEntityQuery")
+#' head(pdbs_by_ncbi_taxid)
+#' }
 #'
 #' @export
 
@@ -122,7 +127,7 @@ query_search <- function(search_term, query_type = "full_text", return_type = "e
   for (attempt in 1:num_attempts) {
     response <- tryCatch(
       {
-        POST(url, body = query_text, encode = "json")
+        POST(url, body = query_text, encode = "json", content_type("application/json"))
       },
       error = function(e) {
         warning("HTTP request failed on attempt ", attempt, ": ", e$message)

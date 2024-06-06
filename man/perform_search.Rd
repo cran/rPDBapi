@@ -34,9 +34,11 @@ This function facilitates searching the RCSB Protein Data Bank (PDB) using a spe
 It allows various configurations like return type, additional request options, and verbosity control.
 }
 \examples{
+\donttest{
 search_operator = InOperator(value=c("Mus musculus", "Homo sapiens"),
 attribute="rcsb_entity_source_organism.taxonomy_lineage.name")
 return_type = "NON_POLYMER_ENTITY"
 results = perform_search(search_operator, return_type)
 results
+}
 }
