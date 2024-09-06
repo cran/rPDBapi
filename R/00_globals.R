@@ -4,8 +4,18 @@
 NULL
 
 FASTA_BASE_URL <- "https://www.rcsb.org/fasta/entry/"
-PDB_DOWNLOAD_BASE_URL <- "https://files.rcsb.org/download/"
-RSCB_GRAPHQL_URL <- "https://data.rcsb.org/graphql?query="
+DOWNLOAD_BASE_URL <- "https://files.rcsb.org/download/"
+GRAPHQL_URL <- "https://data.rcsb.org/graphql?query="
+BASE_URL = "https://data.rcsb.org/rest/v1/"
+SEARCH_URL = "https://search.rcsb.org/rcsbsearch/v2/query?json="
+URL_ROOT =  "https://data.rcsb.org/rest/v1/core/chemcomp/"
+SEARCH_URL_ENDPOINT <- "https://search.rcsb.org/rcsbsearch/v2/query"
+
+
+PDB_API_CONFIG <- list(
+  entry = "core/entry/",
+  chemcomp = "core/chemcomp/"
+)
 
 
 # Text Search Operator Classes - for type checking and compatibility
@@ -36,7 +46,6 @@ DataType <- c(
   CHEMICAL_COMPONENT = "chem_comps"
 )
 
-SEARCH_URL_ENDPOINT <- "https://search.rcsb.org/rcsbsearch/v2/query"
 
 LogicalOperator <- c("AND" = "and", "OR" = "or")
 
@@ -44,7 +53,7 @@ ReturnType <- c(
   ENTRY = "entry",
   ASSEMBLY = "assembly",
   POLYMER_ENTITY = "polymer_entity",
-  NON_POLYMER_ENTITY = "non_polymer_entity",
+  NONPOLYMER_ENTITY = "non_polymer_entity",
   POLYMER_INSTANCE = "polymer_instance"
 )
 
