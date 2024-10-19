@@ -1,4 +1,4 @@
-1da160d94de487f8963a9472ba79b0df *DESCRIPTION
+4f7e53d83bd4c3f65f8c45cfb3a87bbf *DESCRIPTION
 be4423b1330260b61085263c667c7d36 *NAMESPACE
 bb8035ad5eb8781e60d529e516f7b268 *R/00_globals.R
 ba2e4f69a68db27cb9b1b26cdc231913 *R/ChemicalOperator.R
@@ -16,12 +16,12 @@ a568adc98fa8718fbdd6f26b9e03f0bb *R/generate_json_query.R
 fef764d6374af132f89f1aacc6a139af *R/get_fasta_from_rcsb_entry.R
 9f14f4cdc8ab454e751620f2aaae241b *R/get_info.R
 74a5d91916d3ba64e35af5a620d0de71 *R/get_pdb_api_url.R
-1567c4bf0fb3d38efa935c88ecf38d22 *R/get_pdb_file.R
+41b38c7263383234403f6df7ab0bf0a7 *R/get_pdb_file.R
 23575db182d3906414aeb4e2476e68be *R/handle_api_errors.R
 dd0cdde19a53be19b88370d2998a029a *R/parse_fasta_text_to_list.R
 08b1fd35acc5fe48729283a1a8f4e3bc *R/parse_response.R
 14566e4a6b88b07d6d084a5e325c0e9f *R/perform_search.R
-4468208745c284003c2c32b180934dfd *R/query_search.R
+f442d23a8ff320160a27762d9a67d65c *R/query_search.R
 df6cc46bc7fae1a55b713f3d5065b35a *R/rPDBapi-package.R
 f8cb48130713b500248e4a24c679c2de *R/return_data_as_dataframe.R
 391b12a0e82bf7ae7b491f4955067c21 *R/search_client.R
@@ -56,13 +56,13 @@ aa1d22926b0f9f9b8b2135b77ec0ac57 *man/add_property.Rd
 32bb176832480a7ca46a5b25c95e2f55 *man/get_fasta_from_rcsb_entry.Rd
 28342d1893ee6b5f81ea18d9211a04a5 *man/get_info.Rd
 51306bcd5f8f6d31d59debf21fc62d12 *man/get_pdb_api_url.Rd
-2435a5ea014d0e212de50099cb09bd06 *man/get_pdb_file.Rd
+dce1fa9b27e4a38e305089084aea3005 *man/get_pdb_file.Rd
 47b7d37877331d1980bfb9c4e824bbd6 *man/handle_api_errors.Rd
 c4dd6272ab313907412717424359d6c4 *man/infer_search_service.Rd
 51374dc4ac19917a7bea527eb71911b4 *man/parse_fasta_text_to_list.Rd
 714076953c446deb3fa28a8c90428791 *man/parse_response.Rd
 b8473489c9439564b7ae0e908bb3b861 *man/perform_search.Rd
-7ab925210c02cdea6cc3c8303937fea1 *man/query_search.Rd
+cfa026ef65c825c98ff9dcda7060e7e7 *man/query_search.Rd
 7b1d0b5cd49d21af83fbb66331e32926 *man/rPDBapi-package.Rd
 6a4168012a79f6f0906b64d30dc53226 *man/return_data_as_dataframe.Rd
 9b99de074f07c0051dfec86cc4168586 *man/search_graphql.Rd
