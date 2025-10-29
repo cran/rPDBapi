@@ -1,4 +1,4 @@
-4f7e53d83bd4c3f65f8c45cfb3a87bbf *DESCRIPTION
+16784d0c7b798f8bbdf11e5ed331c438 *DESCRIPTION
 be4423b1330260b61085263c667c7d36 *NAMESPACE
 bb8035ad5eb8781e60d529e516f7b268 *R/00_globals.R
 ba2e4f69a68db27cb9b1b26cdc231913 *R/ChemicalOperator.R
@@ -29,6 +29,7 @@ d91690ca0ea6bb16b662b6f368345505 *R/search_graphql.R
 e9893f33f1de1b43f512899f8e4a17f3 *R/send_api_request.R
 91adb4ddcf3f22b856417d023831d59d *R/walk_nested_dict.R
 0076e552de876f0a16e8242d61bb168b *README.md
+277097d7a70bde9bb53c2757a2305714 *inst/CITATION
 709eae95b5e8d814b45f753dd37bfe67 *man/ChemicalOperator.Rd
 fdb9b190d54ab6eedb3b7ae84812eb6f *man/ComparisonOperator.Rd
 afc17c090dfc7fbf96803550d77d364c *man/ContainsPhraseOperator.Rd
